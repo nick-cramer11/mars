@@ -1,0 +1,201 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Mars 2",
+                "note": "NSSDC"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -313,
+                    45
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Mars 3",
+                "note": "TPS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -158,
+                    45
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Mars 6",
+                "note": "TPS"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -19.42,
+                    23.9
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Viking 1",
+                "note": "NSSDC"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -49.97,
+                    22.48
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Mars Polar Lander",
+                "note": "read from map provided by HiRISE team"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    165.2,
+                    76.57
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Pathfinder",
+                "note": "NSSDC"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -33.55,
+                    19.33
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Beagle 2",
+                "note": "NSSDC"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -270,
+                    10.6
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Spirit",
+                "note": "Arvidson et al, JGR, 2006"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -175.47848,
+                    14.571892
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Opportunity",
+                "note": "Squyres et al, JGR, 2006"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    354.4734,
+                    1.9462
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Phoenix",
+                "note": "via press briefing"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    234.250778,
+                    68.21883
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Curiosity",
+                "note": "Vasavada et al, JGR, 2014"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    137.4417,
+                    4.5895
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "InSight",
+                "note": "Golombek et al., LPSC, 2019"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    135.623,
+                    4.502
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "ExoMars rover",
+                "note": "read off this map from ESA, 2018"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    335.7,
+                    18.1
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Mars 2020 rover",
+                "note": "landing site workshop"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.5945,
+                    18.3628
+                ]
+            }
+        }
+    ]
+}
