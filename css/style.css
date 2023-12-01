@@ -30,6 +30,11 @@ body {
     border-radius: 4px;
 }
 
+.button.pressed {
+  background-color: rgba(80, 80, 80, 0.5);
+  color: rgba(40, 40, 40, 0.5);
+}
+
 .title-card {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: small;

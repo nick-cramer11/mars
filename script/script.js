@@ -83,30 +83,24 @@ function addLayer2(map, polygonData) {
 function fillPolygons(map, polygonData, elevationLevel) {
     //clear previously filled polygons
     map.eachLayer(layer => {
-        if (layer instanceof L.Path) {
+        if (layer instanceof L.Path && layer.options.fillOpacity !== 0) {
             map.removeLayer(layer);
         }
     });
 
-    //filter polygons by elevation level
-    const polygonsToFill = polygonData.features.filter(polygon => {
-        return polygon.properties && polygon.properties.elevation <= elevationLevel;
-    });
-
-    // Check the number of polygons to be filled
-    console.log('Polygons to fill:', polygonsToFill.length);
-    
-    //fill the filtered polygons
-    polygonsToFill.forEach(polygon => {
-        L.geoJSON(polygon, {
-            style: {
-                fillColor: 'blue', //change color
-                color: 'blue', //change color
-                weight: 1,
-                opacity: 0.5,
-                fillOpacity: 0.7
-            }
-        }).addTo(map);
+    //filter polygons by elevation level and fill only those that match
+    polygonData.features.forEach(polygon => {
+        if (polygon.properties.elevation <= elevationLevel) {
+            L.geoJSON(polygon, {
+                style: {
+                    fillColor: 'blue',
+                    color: 'blue',
+                    weight: 1,
+                    opacity: 0.5,
+                    fillOpacity: 0.7
+                }
+            }).addTo(map);
+        }
     });
 }
 
@@ -144,6 +138,7 @@ function addToggle(map, landingSitesLayer) {
             } else {
                 landingSitesLayer.addTo(map);
             }
+            button.classList.toggle('pressed'); //toggle the 'pressed' class
         };
         return div;
     };
@@ -157,7 +152,7 @@ function addSlider(map, polygonData) {
 
     slider.addEventListener('input', function (event) {
         const elevationLevel = parseInt(event.target.value);
-        fillPolygonsByElevation(map, polygonData, elevationLevel);
+        fillPolygons(map, polygonData, elevationLevel);
     });
 }
 
