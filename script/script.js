@@ -70,10 +70,7 @@ function addLayer2(map, polygonData) {
         style: function (feature) {
             return {
                 fillColor: 'transparent',
-                color: 'blue', //change color as needed
-                weight: 1,
-                opacity: 0.5,
-                fillOpacity: 0.5
+                color: 'transparent',
             };
         }
     }).addTo(map);
@@ -90,14 +87,14 @@ function fillPolygons(map, polygonData, elevationLevel) {
 
     //filter polygons by elevation level and fill only those that match
     polygonData.features.forEach(polygon => {
-        if (polygon.properties.elevation <= elevationLevel) {
+        if (polygon.properties.elevation >= elevationLevel) {
             L.geoJSON(polygon, {
                 style: {
                     fillColor: 'blue',
                     color: 'blue',
                     weight: 1,
                     opacity: 0.5,
-                    fillOpacity: 0.7
+                    fillOpacity: 0.3
                 }
             }).addTo(map);
         }
