@@ -85,18 +85,26 @@ function fillPolygons(map, polygonData, elevationLevel) {
         }
     });
 
-    //filter polygons by elevation level and fill only those that match
-    polygonData.features.forEach(polygon => {
-        if (polygon.properties.elevation >= elevationLevel) {
-            L.geoJSON(polygon, {
-                style: {
-                    fillColor: 'blue',
-                    color: 'blue',
-                    weight: 1,
-                    opacity: 0.5,
-                    fillOpacity: 0.3
-                }
-            }).addTo(map);
+    //organize elevation data
+    const elevations = polygonData.features.map(polygon => polygon.properties.elevation)
+                                           .filter((value, index, self) => self.indexOf(value) === index)
+                                           .sort((a, b) => a - b);
+
+    //filter and fill polygons (lowest to highest elevation)
+    elevations.forEach(elevation => {
+        if (elevation <= elevationLevel) {
+            polygonData.features.filter(polygon => polygon.properties.elevation === elevation)
+                               .forEach(polygon => {
+                                   L.geoJSON(polygon, {
+                                       style: {
+                                           fillColor: 'blue',
+                                           color: 'white',
+                                           weight: 1,
+                                           opacity: 0.5,
+                                           fillOpacity: 0.3
+                                       }
+                                   }).addTo(map);
+                               });
         }
     });
 }
@@ -146,10 +154,14 @@ function addToggle(map, landingSitesLayer) {
 //add elevation slider
 function addSlider(map, polygonData) {
     const slider = document.getElementById('elevation-slider');
+    const elevationDisplay = document.getElementById('elevation-value');
 
     slider.addEventListener('input', function (event) {
         const elevationLevel = parseInt(event.target.value);
         fillPolygons(map, polygonData, elevationLevel);
+
+        //update the elevation display
+        elevationDisplay.textContent = elevationLevel;
     });
 }
 
