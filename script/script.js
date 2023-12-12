@@ -1,7 +1,7 @@
 //CONSTANTS
 const TILE_LAYER = 'https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-2/all/{z}/{x}/{y}.png';
 const DATA1 = 'data/mars-landing-sites.json';
-const DATA2 = 'data/opm_499_mars_contours_200m_polygons.geojson'
+const DATA2 = 'data/opm_mars_contours_200m_polygons.json';
 const ICON = L.icon({
     iconUrl: 'lib/images/custom-marker-icon.png',
     iconSize: [32, 32],
@@ -85,26 +85,19 @@ function fillPolygons(map, polygonData, elevationLevel) {
         }
     });
 
-    //organize elevation data
-    const elevations = polygonData.features.map(polygon => polygon.properties.elevation)
-                                           .filter((value, index, self) => self.indexOf(value) === index)
-                                           .sort((a, b) => a - b);
-
     //filter and fill polygons (lowest to highest elevation)
-    elevations.forEach(elevation => {
-        if (elevation <= elevationLevel) {
-            polygonData.features.filter(polygon => polygon.properties.elevation === elevation)
-                               .forEach(polygon => {
-                                   L.geoJSON(polygon, {
-                                       style: {
-                                           fillColor: 'blue',
-                                           color: 'white',
-                                           weight: 1,
-                                           opacity: 0.5,
-                                           fillOpacity: 0.3
-                                       }
-                                   }).addTo(map);
-                               });
+    polygonData.features.forEach(polygon => {
+        const polygonElevation = polygon.properties.elevation; //get the elevation of the current polygon
+        if (polygonElevation <= elevationLevel) {
+            L.geoJSON(polygon, {
+                style: {
+                    fillColor: 'blue',
+                    color: 'blue',
+                    weight: 1,
+                    opacity: 0.7,
+                    fillOpacity: 0.7
+                }
+            }).addTo(map);
         }
     });
 }
@@ -156,6 +149,10 @@ function addSlider(map, polygonData) {
     const slider = document.getElementById('elevation-slider');
     const elevationDisplay = document.getElementById('elevation-value');
 
+    //set the initial value to minimum
+    slider.value = slider.min;
+
+    //event listener for slider input changes
     slider.addEventListener('input', function (event) {
         const elevationLevel = parseInt(event.target.value);
         fillPolygons(map, polygonData, elevationLevel);
@@ -207,6 +204,10 @@ function main() {
             addLayer2(map, data);
             //create slider and handle polygon filling
             addSlider(map, data);
+
+            //set initial slider value after adding the event listener
+            const slider = document.getElementById('elevation-slider');
+            slider.value = slider.min;
         })
         .catch(error => {
             console.error('Error fetching GeoJSON:', error);
